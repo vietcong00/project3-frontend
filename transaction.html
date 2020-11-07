@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+    td {
+        text-align: center !important;
+    }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quản lí giao dịch</title>
+    <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet">
+    <link href="assets/css/master.css" rel="stylesheet">
+    <link href="assets/css/overlay_screen2.css" rel="stylesheet">
+    <link href="assets/css/sidebar_collapse.css" rel="stylesheet">
+    <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- thanh MENU  -->
+        <nav id="sidebar" class=""></nav>
+
+        <div id="body" class="active">
+            <!-- thanh header -->
+            <nav id="header"></nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="page-title">
+                        <h3>Chi tiết giao dịch
+
+                            <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2" id="btnAdd"
+                                onclick="openNav();"><i class="fas fa-user-plus"></i> Thêm</a>
+                            <a href="#" class="btn btn-sm btn-outline-primary  float-right ml-2"><i
+                                    class="fas fa-download"></i>Nhập file </a>
+                            <a href="#" onclick="downloadExcel()"
+                                class="btn btn-sm btn-outline-primary  float-right ml-2"><i
+                                    class="fas fa-upload"></i>Xuất file </a>
+
+                        </h3>
+                    </div>
+                    <!-- hiện div sương mờ ở đây !-->
+                    <div id="overlay2" onclick="closeNav()"></div>
+                    <!-- form thêm sửa ở đây !    -->
+
+                    <div id="myForm" class="overlay rounded">
+
+                        <!-- <a href=" #" class="closebtn text-danger" onclick="closeNav();" style="font-size: 50px;">
+                            &times;</a> -->
+                        <div class="overlay-content">
+                            <form>
+                                <!-- Vertical -->
+                                <div class="form-group">
+                                    <!--Mã NV -->
+                                    <!-- <label for="id_deal" class="control-label">Mã deal</label> -->
+                                    <input type="hidden" class="form-control" id="id_deal">
+                                </div>
+                                <div class="form-group">
+                                    <!-- Full Name -->
+                                    <label for="customer" class="control-label">Khách hàng</label>
+                                    <select class="form-control" id="id_customer">
+
+                                    </select>
+                                    <span id="id_customerEmpty" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- email -->
+                                    <label for="user" class="control-label">Mã Nhân viên</label>
+                                    <input type="text" class="form-control" id="id_user">
+                                    <!-- <select class="form-control" id="id_user">
+                                        <option value="2">2 - Phạm Văn Minh</option>
+                                        <option value="3">3 - Lê La</option>
+                                    </select> -->
+                                    <span id="id_userEmpty" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- phone-->
+                                    <label for="product" class="control-label">Khóa học</label>
+                                    <select class="form-control" id="id_product">
+                                        <!-- <option value="2">2 - Phạm Văn Minh</option>
+                                        <option value="3">3 - Lê La</option> -->
+                                    </select>
+                                    <span id="id_productEmpty" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <!-- address-->
+                                    <label for="transaction_time" class="control-label">Trạng thái</label>
+                                    <select class="form-control" id="status">
+                                        <option value="Đang thanh toán" class="text-primary">Đang thanh toán</option>
+                                        <option value="Đã thanh toán" class="text-success">Đã thanh toán</option>
+                                        <option value="Đã hủy" class="text-danger">Đã hủy</option>
+                                    </select>
+                                    <span id="statusEmpty" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <!-- address-->
+                                    <label for="transaction_time" class="control-label">Ghi chú</label>
+                                    <textarea id="note" rows="4" class="form-control">
+                                    </textarea>
+
+                                </div>
+                            </form>
+                            <div class="clearfix">
+                                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">Đóng
+                                </button>
+                                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addRow();">Thêm
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- hết form -->
+                    <div class="clear-fix">
+
+
+                        <div class="box box-primary float-left" id="sidebar-left">
+                            <div class="box-body">
+                                <table class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr class="tr-head text-center">
+                                            <th>ID</th>
+                                            <th>Khách hàng</th>
+                                            <th>Nhân viên</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Thời gian giao dịch</th>
+                                            <th>Trạng thái</th>
+                                            <!-- <th>Hành động</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="float-right " id="sidebar-right" style="width:0px; display: none;">
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">Chi tiết giao dịch<button
+                                                class="btn btn-outline-danger btn-rounded openbtn"
+                                                onclick="closeForm()"> <i class="fas fa-times"></i></button></div>
+                                        <div class="card-body">
+                                            <!-- <h5 class="card-title">Example form with inline field validations</h5> -->
+                                            <form class="needs-validation" novalidate accept-charset="utf-8">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-3">
+                                                        <label for="email">Mã giao dịch</label>
+                                                        <input type="email" class="form-control" id="magiaodich"
+                                                            name="email" placeholder="Eg.#132" required>
+
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="password">Thời gian giao dịch</label>
+                                                        <input type="text" class="form-control" id="thoigiangiaodich"
+                                                            placeholder="Eg. 02/11/2019 01:49" required>
+
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        <label for="password">Trạng thái</label>
+                                                        <select class="form-control" id="trangthai"
+                                                            onchange="changeStatus()">
+                                                            <option value="Đang thanh toán" class="text-primary">Đang
+                                                                thanh toán</option>
+                                                            <option value="Đã thanh toán" class="text-success">Đã thanh
+                                                                toán</option>
+                                                            <option value="Đã hủy" class="text-danger">Đã hủy</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="city">Khách hàng</label>
+                                                        <input class="form-control" id="khachhang">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="city">Địa chỉ</label>
+                                                        <input type="text" class="form-control" id="diachi"
+                                                            placeholder=" Hà Nội" required>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-12">
+                                                        <label for="city">Nhân viên chăm sóc</label>
+                                                        <input class="form-control" id="nhanvienchamsoc">
+                                                    </div>
+
+                                                </div>
+
+                                                <hr>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-2">
+                                                        <h5>Ghi chú</h5>
+                                                    </div>
+                                                    <div class="form-group col-md-1"></div>
+                                                    <div class="form-group col-md-9 ">
+                                                        <!-- <p id="ghichu"></p> -->
+                                                        <textarea id="ghichu" rows="4" cols="50" class="form-control">
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="form-group col-md-1"></div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-3">
+                                                        <h5>Sản phẩm</h5>
+                                                        <p id="sanpham"></p>
+                                                    </div>
+                                                    <div class="form-group col-md-1"></div>
+
+                                                    <div class="form-group col-md-5 ">
+                                                        <h4>Mô tả sản phẩm</h4>
+                                                        <p id="motasanpham"></p>
+
+                                                    </div>
+                                                    <!-- <div class="form-group col-md-1"></div> -->
+                                                    <div class="form-group col-md-3 ">
+                                                        <label for="city">Giá tiền</label>
+                                                        <h5 class="text-danger" id="giatien"></h5>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                            <a href="#" type="submit" class="btn btn-success" onclick="editRow();"
+                                                id="btnEdit"><i class="fas fa-save"></i>
+                                                Sửa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+    <script src="assets/vendor/DataTables/datatables.min.js"></script>
+    <script src="assets/js/initiate-datatables.js"></script>
+    <script src="assets/js/notify.min.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/CommonCookie.js"></script>
+    <script src="assets/js/transaction.js"></script>
+
+
+    </script>
+</body>
+<footer>
+    <!-- thanh footer -->
+    <nav id="footer"></nav>
+</footer>
+
+</html>

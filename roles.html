@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+  td {
+    text-align: center !important;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Quản lí Quyền</title>
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- thanh MENU  -->
+    <nav id="sidebar" class=""></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Quản Lý Vai Trò
+              <a href="users.html" class="btn btn-sm btn-outline-info float-right"><i class="fas fa-angle-left"></i>
+                <span class="btn-header">Quay lại</span></a>
+              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2 mr-2" onclick="openNav();"><i
+                  class="fas fa-user-plus"></i> Thêm</a>
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav()"></div>
+          <!-- form thêm sửa ở đây !    -->
+
+          <div id="myForm" class="overlay rounded">
+            <div class="overlay-content">
+              <form>
+                <!-- Vertical -->
+                <div class="form-group">
+                  <!--Mã Role -->
+                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
+                  <input type="hidden" class="form-control" id="role_id" placeholder="John Deer" />
+                </div>
+                <div class="form-group">
+                  <!-- Full Name -->
+                  <label for="name" class="control-label">Vai trò</label>
+                  <input type="text" class="form-control" id="name" placeholder="Eg. John Deer" />
+                  <span id="nameEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" id="formSwitch">
+                  <label for="role">Quyền truy cập trang</label>
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchUser" href="#nhanvien"
+                        data-toggle="collapse" value="3" />
+                      <label class="custom-control-label" for="switchUser">
+                        Nhân viên</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="nhanvien">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchUserAdd" value="1" />
+                        <label class="custom-control-label" for="switchUserAdd">Thêm nhân viên</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchUserEdit"
+                          value="2" />
+                        <label class="custom-control-label" for="switchUserEdit">Sửa nhân viên</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchUserReset"
+                          value="5" />
+                        <label class="custom-control-label" for="switchUserReset">Đặt lại mật khẩu</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- <div class="custom-control custom-switch pageAction">
+                                        <input type="checkbox" class="custom-control-input pageSwitch" id="switchHome" value="1">
+                                        <label class="custom-control-label" for="switchHome">Trang chủ</label>
+                                    </div> -->
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchGroup" href="#nhomcuatoi"
+                        data-toggle="collapse" value="8" />
+                      <label class="custom-control-label" for="switchGroup">
+                        Nhóm của tôi</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="nhomcuatoi">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchGroupAdd"
+                          value="1" />
+                        <label class="custom-control-label" for="switchGroupAdd">Thêm thành viên</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchGroupEdit"
+                          value="2" />
+                        <label class="custom-control-label" for="switchGroupEdit">Sửa thành viên</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchCustomer"
+                        href="#khachhang" data-toggle="collapse" value="4" />
+                      <label class="custom-control-label" for="switchCustomer">
+                        Khách hàng</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="khachhang">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchCustomerAdd"
+                          value="1" />
+                        <label class="custom-control-label" for="switchCustomerAdd">Thêm khách hàng</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchCustomerEdit"
+                          value="2" />
+                        <label class="custom-control-label" for="switchCustomerEdit">Sửa khách hàng</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchCustomerCare"
+                          value="6" />
+                        <label class="custom-control-label" for="switchCustomerCare">Chăm sóc</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchTransaction"
+                        href="#giaodich" data-toggle="collapse" value="5" />
+                      <label class="custom-control-label" for="switchTransaction">Quản lý giao dịch</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="giaodich">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchTransactionAdd"
+                          value="1" />
+                        <label class="custom-control-label" for="switchTransactionAdd">Thêm giao dịch</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchTransactionEdit"
+                          value="2" />
+                        <label class="custom-control-label" for="switchTransactionEdit">Sửa giao dịch</label>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchProduct" href="#sanpham"
+                        data-toggle="collapse" value="10" />
+                      <label class="custom-control-label" for="switchProduct">
+                        Sản phẩm</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="sanpham">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchProductAdd"
+                          value="1" />
+                        <label class="custom-control-label" for="switchProductAdd">Thêm sản phẩm</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchProductEdit"
+                          value="2" />
+                        <label class="custom-control-label" for="switchProductEdit">Sửa sản phẩm</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="custom-control custom-switch pageAction">
+                    <div>
+                      <input type="checkbox" class="custom-control-input pageSwitch" id="switchHistoryCare"
+                        href="#chamsoc" data-toggle="collapse" value="11" />
+                      <label class="custom-control-label" for="switchHistoryCare">
+                        Chăm sóc khách hàng</label>
+                    </div>
+                    <ul class="collapse list-unstyled ml-5" id="chamsoc">
+                      <li>
+                        <input type="checkbox" class="custom-control-input actionSwitch" id="switchHistoryCareAdd"
+                          value="1" />
+                        <label class="custom-control-label" for="switchHistoryCareAdd">Thêm phiên</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="switch5">
+                                        <label class="custom-control-label" for="switch5"> Chiến dịch</label>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="switch6">
+                                        <label class="custom-control-label" for="switch6"> Báo cáo</label>
+                                    </div> -->
+                  <!-- <div class="custom-control custom-switch pageAction">
+                                        <input type="checkbox" class="custom-control-input pageSwitch" id="switchSetting"
+                                            value="9">
+                                        <label class="custom-control-label" for="switchSetting"> Cài đặt</label>
+                                    </div> -->
+                </div>
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
+                  Đóng
+                </button>
+                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addRow();">
+                  Thêm
+                </button>
+                <button id="editRow" class="btn btn-success mt-2 float-right" onclick="editRow(this);">
+                  Sửa
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- hết form -->
+
+          <div class="box box-primary">
+            <div class="box-body">
+              <table width="100%" class="table table-hover" id="dataTables-example">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Vai trò</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/role.js"></script>
+</body>
+<footer>
+  <!-- thanh footer -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>

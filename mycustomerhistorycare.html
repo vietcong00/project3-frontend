@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+  td {
+    text-align: center !important;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Quản lí khách hàng</title>
+
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+
+  <script src="assets/vendor/datetimepicker-master/datetimepicker-master/jquery.js"></script>
+  <script src="assets/vendor/datetimepicker-master/datetimepicker-master/build/jquery.datetimepicker.full.js"></script>
+  <link rel="stylesheet"
+    href="assets/vendor/datetimepicker-master/datetimepicker-master/build/jquery.datetimepicker.min.css" />
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <script>
+    $(document).ready(function () {
+      $(function () {
+        $("#startTime").focus(function () {
+          $("#startTime").datetimepicker({
+            format: "Y-m-d H:i:s",
+          });
+        });
+        $("#endTime").focus(function () {
+          $("#endTime").datetimepicker({
+            format: "Y-m-d H:i:s",
+          });
+        });
+      });
+    });
+  </script>
+  <div class="wrapper">
+    <!-- thanh MENU  -->
+    <nav id="sidebar" class=""></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Lịch sử chăm sóc khách hàng cá nhân
+              <a href="customer.html" class="btn btn-sm btn-outline-info float-right"><i class="fas fa-angle-left"></i>
+                <span class="btn-header">Quay lại</span></a>
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav();closeNavNote();"></div>
+
+          <!-- form thêm phiên ở đây !    -->
+          <div id="myForm" class="overlay rounded">
+            <!-- <a href=" #" class="closebtn text-danger" onclick="closeNav();" style="font-size: 50px;">
+                            &times;</a> -->
+            <div class="overlay-content">
+              <form>
+                <!-- Vertical -->
+                <div class="form-group">
+                  <!--Mã NV -->
+                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
+                  <input type="hidden" class="form-control" id="customer_id" placeholder="John Deer" />
+                </div>
+                <div class="form-group">
+                  <!-- Start Time -->
+                  <label for="startTime" class="control-label">Start Time</label>
+                  <input type="text" autocomplete="off" class="form-control" id="startTime" />
+                </div>
+
+                <div class="form-group">
+                  <!-- email -->
+                  <label for="endTime" class="control-label">End Time</label>
+                  <input type="text" autocomplete="off" class="form-control" id="endTime" />
+                  <span id="emailEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- phone-->
+                  <label for="method" class="control-label">Method</label>
+                  <select class="form-control" id="method">
+                    <option value="Call">Call</option>
+                    <option value="Phone">Phone</option>
+                    <option value="Text">Text</option>
+                    <option value="Meet">Meet</option>
+                    <option value="Another">Another</option>
+                  </select>
+                  <span id="phoneEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="purpose" class="control-label">Purpose</label>
+                  <input type="text" class="form-control" id="purpose" />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="productName" class="control-label">Product Name</label>
+                  <input type="text" class="form-control" id="productName" />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="note" class="control-label">Note</label>
+                  <input type="text" class="form-control" id="note" />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="concernLevel" class="control-label">Concern level</label>
+                  <select class="form-control" id="concernLevel">
+                    <option value="Excellent" class="btn btn-danger text-light">
+                      Excellent
+                    </option>
+                    <option value="Good" class="btn btn-warning">Good</option>
+                    <option value="Average" class="btn btn-info text-light">
+                      Average
+                    </option>
+                    <option value="Poor" class="btn btn-dark text-light">
+                      Poor
+                    </option>
+                  </select>
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="action" class="control-label"> Action</label>
+                  <input type="text" class="form-control" id="action" />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
+                  Đóng
+                </button>
+                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addNewHistoryCare();">
+                  Thêm
+                </button>
+                <button id="editRow" class="btn btn-success mt-2 float-right" onclick="editRow(this);">
+                  Sửa
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- hết form -->
+
+          <!-- form thêm ghi chú -->
+          <div id="myFormNote" class="overlay rounded">
+            <!-- <a href=" #" class="closebtn text-danger" onclick="closeNav();" style="font-size: 50px;">
+                            &times;</a> -->
+            <div class="overlay-content">
+              <form>
+                <!-- Vertical -->
+                <div class="form-group">
+                  <!--Mã NV -->
+                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
+                  <input type="hidden" class="form-control" id="customer_id" placeholder="John Deer" />
+                </div>
+                <div class="form-group">
+                  <!-- Tiêu đề -->
+                  <label for="title" class="control-label">Tiêu đề</label>
+                  <input type="text" class="form-control" id="title" />
+                  <span id="nameEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- Nội dung -->
+                  <label for="detail" class="control-label">Nội dung</label>
+                  <input type="text" class="form-control" id="detail" />
+                  <span id="emailEmpty" class="text-danger"></span>
+                </div>
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNavNote();">
+                  Đóng
+                </button>
+                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addRowNote();">
+                  Thêm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section id="navbar-bg">
+        <div class="row">
+          <div class="col">
+            <div class="row py-2 pl-2 bg-light border rounded ml-3 my-3">
+              <div class="col">
+                <i class="fas fa-user-circle" style="width: 210px; height: 200px; color: rgb(9, 192, 224)"></i>
+              </div>
+              <div class="col pt-3 rounded my-3" id="customerInfo"></div>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+        <!-- table show info history care -->
+      </section>
+      <div class="row mx-3 my-3">
+        <div class="col-8 border border-info rounded-left" id="bgHistoryCare">
+          <div class="text-center text-light bg-info rounded-bottom">
+            Danh sách phiên chăm sóc
+          </div>
+          <div class="my-2" style="height: 30px" id="btn-add-phien"></div>
+          <div class="" id="listHistoryCare"></div>
+        </div>
+        <div class="col-4 border border-info rounded-right" id="bgHistoryCare">
+          <div class="text-center text-light bg-info rounded-bottom">
+            Danh sách ghi chú
+          </div>
+
+          <div class="my-2 text-center">
+            <a href="#" class="btn btn-sm btn-primary ml-2" id="btnAdd" onclick="openNavAddNote();">
+              Thêm ghi chú <i class="fas fa-pen"></i></a>
+            <a href="#" class="btn btn-sm btn-danger ml-2" id="deleteAllReminde">
+              Xóa toàn bộ ghi chú <i class="fas fa-trash"></i></a>
+          </div>
+          <div class="noteArea" id="noteArea"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/mycustomerhistorycare.js"></script>
+</body>
+<footer>
+  <!-- thanh footer  -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>

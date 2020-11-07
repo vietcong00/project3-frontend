@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Users</title>
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- thanh menu -->
+    <nav id="sidebar"></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Danh sách nhân viên
+
+              <!-- <a href="roles.html" class="btn btn-sm btn-outline-primary float-right ml-2"><i
+                  class="fas fa-user-shield"></i>Vai trò</a> -->
+              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2" id="btnAdd" onclick="openNav();"><i
+                  class="fas fa-user-plus"></i> Thêm</a>
+              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2"><i class="fas fa-download"></i>Nhập
+                file
+              </a>
+              <a href="#" onclick="downloadExcel()" class="btn btn-sm btn-outline-primary float-right ml-2"><i
+                  class="fas fa-upload"></i>Xuất file
+              </a>
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav()"></div>
+          <!-- form thêm sửa ở đây !    -->
+
+          <div id="myForm" class="overlay rounded">
+            <!-- <a href=" #" class="closebtn text-danger" onclick="closeNav();" style="font-size: 50px;">
+                            &times;</a> -->
+            <div class="overlay-content">
+              <form>
+                <!-- Vertical -->
+                <div class="form-group">
+                  <!--Mã NV -->
+                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
+                  <input type="hidden" class="form-control" id="user_id" placeholder="John Deer" />
+                </div>
+                <div class="form-group">
+                  <!-- Full Name -->
+                  <label for="name" class="control-label">Họ và tên</label>
+                  <input type="text" class="form-control" id="name" placeholder="Eg. John Deer" />
+                  <span id="nameEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- email -->
+                  <label for="email" class="control-label">Email</label>
+                  <input type="text" class="form-control" id="email" placeholder="eg. nam123@abc.xyz" />
+                  <span id="emailEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- password -->
+                  <label for="password" class="control-label">Mật khẩu</label>
+                  <input type="text" class="form-control" id="password" placeholder="eg. 123abc,20201974,...." />
+                  <span id="passwordEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- idGroup -->
+                  <label for="group" class="control-label">Nhóm</label>
+                  <select class="form-control" id="group">
+                    <!-- <option value="2">2</option>
+                                        <option value="3">3</option> -->
+                  </select>
+                  <span id="groupEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- type -->
+                  <label for="type" class="control-label">Loại</label>
+                  <select class="form-control" id="type">
+                    <option value="leader">Nhóm trưởng</option>
+                    <option value="employee">Thành viên</option>
+                  </select>
+                  <span id="typeEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- role -->
+                  <label for="role" class="control-label">Quyền</label>
+                  <!-- <select class="form-control" id="role">
+                                        
+                                    </select> -->
+                  <span id="roleEmpty" class="text-danger"></span>
+                  <input type="button" class="form-control" id="switch3" href="#roleList" data-toggle="collapse"
+                    value="Mời chọn quyền " />
+                  <div class="collapse list-unstyled ml-5" id="roleList">
+                    <!-- list role -->
+                  </div>
+                </div>
+                <div class="form-group" id="statusDiv">
+                  <!-- address-->
+                  <label for="address" class="control-label">Trạng thái</label>
+                  <select class="form-control" id="status" onchange="changeStatus()">
+                    <option value="Đang hoạt động" class="text-success">
+                      Đang hoạt động
+                    </option>
+                    <option value="Không hoạt động" class="text-danger">
+                      Không hoạt động
+                    </option>
+                  </select>
+                  <span id="statusEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- phone-->
+                  <label for="phone" class="control-label">Số điện thoại</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Eg.123-45-678" />
+                  <span id="phoneEmpty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="address" class="control-label">Địa chỉ</label>
+                  <input type="text" class="form-control" id="address" placeholder="Eg.ha noi " />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
+                  Đóng
+                </button>
+                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addRow();">
+                  Thêm
+                </button>
+                <button id="editRow" class="btn btn-success mt-2 float-right" onclick="editRow(this);">
+                  Sửa
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- hết form -->
+
+          <div class="box box-primary">
+            <div class="box-body">
+              <table width="100%" class="table table-hover" id="dataTables-example">
+                <thead>
+                  <tr class="text-center">
+                    <th>Mã nhân viên</th>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Nhóm</th>
+                    <th>Loại</th>
+                    <th>Trạng thái</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/users.js"></script>
+</body>
+<footer>
+  <!-- thanh footer -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>

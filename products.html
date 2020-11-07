@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+  td {
+    text-align: center !important;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sản phẩm</title>
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- thanh MENU  -->
+    <nav id="sidebar" class=""></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Danh sách sản phẩm
+
+              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2" id="btnAdd" onclick="openNav();"><i
+                  class="fas fa-user-plus"></i> Thêm</a>
+              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2"><i class="fas fa-download"></i>Nhập
+                file
+              </a>
+              <a href="#" onclick="downloadExcel()" class="btn btn-sm btn-outline-primary float-right ml-2"><i
+                  class="fas fa-upload"></i>Xuất file
+              </a>
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav()"></div>
+          <!-- form thêm sửa ở đây !    -->
+
+          <div id="myForm" class="overlay rounded">
+            <!-- <a href=" #" class="closebtn text-danger" onclick="closeNav();" style="font-size: 50px;">
+                            &times;</a> -->
+            <div class="overlay-content">
+              <form>
+                <!-- Vertical -->
+                <div class="form-group">
+                  <!--Mã NV -->
+                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
+                  <input type="hidden" class="form-control" id="product_id" placeholder="####" />
+                </div>
+                <div class="form-group">
+                  <!-- Full Name -->
+                  <label for="name" class="control-label">Tên sản phẩm</label>
+                  <input type="text" class="form-control" id="name" placeholder="Eg. ####" />
+                  <span id="nameEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- email -->
+                  <label for="price" class="control-label">Giá</label>
+                  <input type="text" class="form-control" id="price" placeholder="eg. #####" />
+                  <span id="priceEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- phone-->
+                  <label for="description" class="control-label">Mô tả</label>
+                  <!-- <input type="text" class="form-control" id="description" placeholder="#####"> -->
+                  <textarea id="description" rows="10" class="form-control">
+                    </textarea>
+                  <span id="descriptionEmpty" class="text-danger"></span>
+                </div>
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
+                  Đóng
+                </button>
+                <button id="addRow" class="btn btn-primary mt-2 float-right" onclick="addRow();">
+                  Thêm
+                </button>
+                <button id="editRow" class="btn btn-success mt-2 float-right" onclick="editRow(this);">
+                  Sửa
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- hết form -->
+
+          <div class="box box-primary">
+            <div class="box-body">
+              <table width="100%" class="table table-hover" id="dataTables-example">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Mô tả</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr>
+                                        <td>1</td>
+                                        <td>Java</td>
+                                        <td>10.000.000vnđ</td>
+                                        <td>học hay</td>
+                                        <td>
+                                            <button class="btn btn-outline-info btn-rounded"
+                                                onclick="openNavToEdit(this);"><i class="fas fa-pen"></i></button>
+                                            <button id="buton111" class="btn btn-outline-danger btn-rounded"
+                                                onclick="removeRow(this);"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>C++</td>
+                                        <td>9.000.000vnđ</td>
+                                        <td>học cũng hay</td>
+                                        <td>
+                                            <button class="btn btn-outline-info btn-rounded"
+                                                onclick="openNavToEdit(this);"><i class="fas fa-pen"></i></button>
+                                            <button id="buton111" class="btn btn-outline-danger btn-rounded"
+                                                onclick="removeRow(this);"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/product.js"></script>
+</body>
+<footer>
+  <!-- thanh footer -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>
