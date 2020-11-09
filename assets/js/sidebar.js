@@ -8,65 +8,56 @@ function showandhide() {
     "<li> <a href='index.html'><i class='fas fa-home'></i> Trang chủ</a> </li>";
   $("#sidebar ul").append(str);
   for (var i = 0; i < pageActionList.length; i++) {
-    if (pageActionList[i].page.url == "users.html") {
+    if (pageActionList[i].page.urlPage == "employee.html") {
       pageName = "Nhân viên";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
+        pageActionList[i].page.urlPage +
         "'><i class='fas fa-user'></i> " +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "group.html") {
-      pageName = "Nhóm của tôi";
-      var str =
-        "<li> <a href='" +
-        pageActionList[i].page.url +
-        "'><i class='fas fa-user-friends'></i> " +
-        pageName +
-        "</a> </li>";
-      $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "customer.html") {
+    } else if (pageActionList[i].page.urlPage == "customer.html") {
       pageName = "Khách hàng";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
+        pageActionList[i].page.urlPage +
         "'><i class='fas fa-users'></i> " +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "settings.html") {
-      pageName = "Cài đặt";
+    } else if (pageActionList[i].page.urlPage == "mark.html") {
+      pageName = "Chấm điểm";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
-        "'><i class='fas fa-cogs'></i>" +
+        pageActionList[i].page.urlPage +
+        "'><i class='fas fa-marker'></i>" +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "roles.html") {
-      pageName = "Quản lý vai trò";
+    } else if (pageActionList[i].page.urlPage == "score.html") {
+      pageName = "Điểm đánh giá";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
+        pageActionList[i].page.urlPage +
         "'><i class='fas fa-user-shield'></i> " +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "products.html") {
-      pageName = "Quản lý sản phẩm";
+    } else if (pageActionList[i].page.urlPage == "service.html") {
+      pageName = "Dịch vụ";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
+        pageActionList[i].page.urlPage +
         "'><i class='fas fa-book-open'></i> " +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.url == "transaction.html") {
-      pageName = "Quản lý giao dịch";
+    } else if (pageActionList[i].page.urlPage == "promotion.html") {
+      pageName = "Khuyến mãi";
       var str =
         "<li> <a href='" +
-        pageActionList[i].page.url +
+        pageActionList[i].page.urlPage +
         "'><i class='fas fa-file-invoice-dollar'></i>" +
         pageName +
         "</a> </li>";

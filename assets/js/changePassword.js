@@ -32,7 +32,7 @@ function changePassword() {
                             className: "success",
                         });
                         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                        document.cookie = "idUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                        document.cookie = "idEmployee=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                         document.cookie =
                             "pageActionList=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                         document.cookie =

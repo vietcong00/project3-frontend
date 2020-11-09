@@ -10,7 +10,7 @@ $(document).ready(function () {
 function logOut() {
     $("#btnLogout").click(function () {
         $.ajax({
-            url: "http://" + ipAddress + "/user/logout",
+            url: "http://" + ipAddress + "/employee/logout",
             method: "GET",
             beforeSend: function (xhr) {
                 var token = getCookie("token");
@@ -29,11 +29,9 @@ function logOut() {
                     className: "warn",
                 });
                 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "idUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                document.cookie = "idEmployee=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                 document.cookie = "pageActionList=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                 document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "idGroup=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "idCustomer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                 location.replace("login.html");
             },
             error: function (e) {
