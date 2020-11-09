@@ -36,20 +36,29 @@ function showandhide() {
         "</a> </li>";
       $("#sidebar ul").append(str);
     } else if (pageActionList[i].page.urlPage == "score.html") {
-      pageName = "Điểm đánh giá";
+      pageName = "Thống kê điểm";
       var str =
         "<li> <a href='" +
         pageActionList[i].page.urlPage +
-        "'><i class='fas fa-user-shield'></i> " +
+        "'><i class='fas fa-list-alt'></i>" +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.urlPage == "service.html") {
+    } else if (pageActionList[i].page.urlPage == "customercare.html") {
+      pageName = "Chăm sóc khách hàng";
+      var str =
+        "<li> <a href='" +
+        pageActionList[i].page.urlPage +
+        "'><i class='fas fa-headset'></i>" +
+        pageName +
+        "</a> </li>";
+      $("#sidebar ul").append(str);
+    }else if (pageActionList[i].page.urlPage == "service.html") {
       pageName = "Dịch vụ";
       var str =
         "<li> <a href='" +
         pageActionList[i].page.urlPage +
-        "'><i class='fas fa-book-open'></i> " +
+        "'><i class='fas fa-sim-card'></i>" +
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
