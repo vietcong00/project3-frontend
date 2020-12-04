@@ -68,6 +68,7 @@
                   <!-- <label for="user_id" class="control-label">Mã NV</label> -->
                   <input type="hidden" class="form-control" id="customer_id" placeholder="John Deer" />
                 </div>
+
                 <div class="form-group">
                   <!-- Full Name -->
                   <label for="name" class="control-label">Họ và tên</label>
@@ -76,24 +77,82 @@
                 </div>
 
                 <div class="form-group">
-                  <!-- email -->
-                  <label for="email" class="control-label">Email</label>
-                  <input type="text" class="form-control" id="email" placeholder="eg. abcxyz@gmail.com" />
-                  <span id="emailEmpty" class="text-danger"></span>
+                  <!-- birthday-->
+                  <label for="birthday" class="control-label">Ngày sinh</label>
+                  <input type="date" class="form-control" id="birthday" placeholder="#####" />
+                  <span id="birthdayEmpty" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                   <!-- phone-->
-                  <label for="phone" class="control-label">Phone</label>
-                  <input type="text" class="form-control" id="phone" placeholder="#####" />
+                  <label for="phone" class="control-label">Số điện thoại</label>
+                  <input type="text" class="form-control" id="phone" placeholder="Eg. 0123 456 789" />
                   <span id="phoneEmpty" class="text-danger"></span>
                 </div>
+
+                <div class="form-group">
+                  <!-- people id-->
+                  <label for="peopleId" class="control-label">Số CMND/CCCD</label>
+                  <input type="text" class="form-control" id="peopleId" placeholder="Eg, 1111 1111 1111" />
+                  <span id="peopleIdEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- date range-->
+                  <label for="dateRange" class="control-label">Ngày hết hạn</label>
+                  <input type="date" class="form-control" id="dateRange" placeholder="#####" />
+                  <span id="dateRangeEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- isused by-->
+                  <label for="isUsedBy" class="control-label">Được cấp bởi</label>
+                  <input type="text" class="form-control" id="isUsedBy" placeholder="Eg. Công an ..." />
+                  <span id="isUsedByEmpty" class="text-danger"></span>
+                </div>
+
                 <div class="form-group">
                   <!-- address-->
-                  <label for="address" class="control-label">Address</label>
-                  <input type="text" class="form-control" id="address" placeholder="#####" />
+                  <label for="address" class="control-label">Địa chỉ</label>
+                  <input type="text" class="form-control" id="address" placeholder="Eg. Hà Nội" />
                   <span id="addressEmpty" class="text-danger"></span>
                 </div>
+
+                <div class="form-group">
+                  <!-- nationality-->
+                  <label for="nationality" class="control-label">Quốc tịch</label>
+                  <input type="text" class="form-control" id="nationality" placeholder="Eg. Việt Nam" />
+                  <span id="nationalityEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- activation date-->
+                  <label for="activationDate" class="control-label">Ngày kích hoạt</label>
+                  <input type="date" class="form-control" id="activationDate" placeholder="#####" />
+                  <span id="activationDateEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- activation place-->
+                  <label for="activationPlace" class="control-label">Nơi kích hoạt</label>
+                  <input type="text" class="form-control" id="activationPlace" placeholder="Eg. Cửa hàng Viettel 518 Xã Đàn" />
+                  <span id="activationPlaceEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- note-->
+                  <label for="note" class="control-label">Ghi chú</label>
+                  <input type="text" class="form-control" id="note" placeholder="Eg. Khách VIP" />
+                  <span id="noteEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- status-->
+                  <label for="status" class="control-label">Trạng thái hoạt động</label>
+                  <input type="text" class="form-control" id="status" placeholder="Eg, Đang hoạt động" />
+                  <span id="statusEmpty" class="text-danger"></span>
+                </div>
+
               </form>
               <div class="clearfix">
                 <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
@@ -117,9 +176,9 @@
                   <tr class="text-center">
                     <th>ID</th>
                     <th>Họ và tên</th>
-                    <th>Email</th>
                     <th>Số điện thoại</th>
                     <th>Địa chỉ</th>
+                    <th>Trạng thái hoạt động</th>
                     <th>Hành động</th>
                   </tr>
                 </thead>

@@ -10,7 +10,7 @@ function checkTokenWeb() {
         }, 500);
     } else {
         $.ajax({
-            url: "http://" + ipAddress + "/user/checkTokenWeb",
+            url: "http://" + ipAddress + "/employee/checkTokenWeb",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);

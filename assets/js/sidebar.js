@@ -26,8 +26,8 @@ function showandhide() {
         pageName +
         "</a> </li>";
       $("#sidebar ul").append(str);
-    } else if (pageActionList[i].page.urlPage == "mark.html") {
-      pageName = "Chấm điểm";
+    } else if (pageActionList[i].page.urlPage == "record.html") {
+      pageName = "Đánh giá cuộc gọi";
       var str =
         "<li> <a href='" +
         pageActionList[i].page.urlPage +

@@ -16,6 +16,15 @@ var btnHistoryCare =
     "<button class='btn btn-outline-success btn-rounded mr-1' " +
     " onclick='replaceToCustomerHistoryCare(this);'><i class='fas fa-address-book'></i></button>";
 
+var btnDetail =
+    "<button class='btn btn-outline-success btn-rounded mr-1' " +
+    " onclick='replaceToCustomerDetail(this);'><i class='fas fa-info-circle'></i></button>";
+
+if (editFlag) {
+    btnAction +=
+        "<button class='btn btn-outline-info btn-rounded'" +
+        " onclick='openNavToEdit(this);'><i class='fas fa-pen'></i></button>";
+}
 $(document).ready(function () {
     //get all Customer
     var pageActionList = JSON.parse(getCookie("pageActionList"));
@@ -31,18 +40,12 @@ $(document).ready(function () {
         var str = "";
 
         for (var i = 0; i < pageActionList.length; i++) {
-            if (pageActionList[i].page.url == "customer.html") {
+            if (pageActionList[i].page.urlPage == "customer.html") {
                 for (var j = 0; j < pageActionList[i].actionList.length; j++) {
-                    if (pageActionList[i].actionList[j].name == "edit") {
-                        editFlag = true;
-                    }
-                    if (pageActionList[i].actionList[j].name == "delete") {
+                    if (pageActionList[i].actionList[j].nameAction == "delete") {
                         deleteFlag = true;
                     }
-                    if (pageActionList[i].actionList[j].name == "historycare") {
-                        historyCareFlag = true;
-                    }
-                    if (pageActionList[i].actionList[j].name == "add") {
+                    if (pageActionList[i].actionList[j].nameAction == "add") {
                         addFlag = true;
                     }
                 }
@@ -65,6 +68,7 @@ $(document).ready(function () {
         if (!addFlag) {
             $("#btnAdd").hide();
         }
+        btnAction += btnDetail;
         for (var i = 0; i < data.customerList.length; i++) {
             str +=
                 "<tr>" +
@@ -72,16 +76,16 @@ $(document).ready(function () {
                 data.customerList[i].idCustomer +
                 "</td>" +
                 "<td>" +
-                data.customerList[i].name +
+                data.customerList[i].nameCustomer +
                 "</td>" +
                 "<td>" +
-                data.customerList[i].email +
+                data.customerList[i].phoneCustomer +
                 "</td>" +
                 "<td>" +
-                data.customerList[i].phone +
+                data.customerList[i].addressCustomer +
                 "</td>" +
                 "<td>" +
-                data.customerList[i].address +
+                changeColor(data.customerList[i].statusCustomer) +
                 "</td>" +
                 "<td>";
             str += btnAction + "</td> </tr>";
@@ -98,22 +102,35 @@ $(document).ready(function () {
 function addRow() {
     if (!checkEmptyInput()) {
         var name = $("#name").val(),
-            email = $("#email").val(),
+            birthday = $("#birthday").val(),
             phone = $("#phone").val(),
-            address = $("#address").val();
-        var create_by_id_user = getCookie("idUser");
+            peopleId = $("#peopleId").val(),
+            dateRange = $("#dateRange").val(),
+            isUsedBy = $("#isUsedBy").val(),
+            address = $("#address").val(),
+            nationality = $("#nationality").val(),
+            activationDate = $("#activationDate").val(),
+            activationPlace = $("#activationPlace").val(),
+            note = $("#note").val(),
+            status = $("#status").val();
         // thêm ở phía server
         $.ajax({
             type: "POST",
             url: "http://" + ipAddress + "/customer/saveCustomer",
             contentType: "application/json",
             data: JSON.stringify({
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-                createByIdUser: create_by_id_user,
-                createTime: dateTime,
+                nameCustomer: name,
+                dateofbirthCustomer: birthday,
+                phoneCustomer: phone,
+                peopleidCustomer: peopleId,
+                daterangeCustomer: dateRange,
+                issuedbyCustomer: isUsedBy,
+                addressCustomer: address,
+                nationalityCustomer: nationality,
+                activationdateCustomer: activationDate,
+                activationplaceCustomer: activationPlace,
+                noteCustomer: note,
+                statusCustomer: status,
             }),
             beforeSend: function (xhr) {
                 var token = getCookie("token");
@@ -155,9 +172,9 @@ function addRow() {
                         .add([
                             data.customer.idCustomer,
                             name,
-                            email,
                             phone,
                             address,
+                            status,
                             btnAction,
                         ])
                         .draw(false);
@@ -214,29 +231,44 @@ $("body").on("click", "#editRow", function () {
     var table = $("#dataTables-example").DataTable();
     if (!checkEmptyInput()) {
         var name = $("#name").val(),
-            email = $("#email").val(),
+            birthday = $("#birthday").val(),
             phone = $("#phone").val(),
-            address = $("#address").val();
-        var create_by_id_user = getCookie("idUser");
+            peopleId = $("#peopleId").val(),
+            dateRange = $("#dateRange").val(),
+            isUsedBy = $("#isUsedBy").val(),
+            address = $("#address").val(),
+            nationality = $("#nationality").val(),
+            activationDate = $("#activationDate").val(),
+            activationPlace = $("#activationPlace").val(),
+            note = $("#note").val(),
+            status = $("#status").val();
         // sửa ở phía server
-
+        console.log(phone);
         $.ajax({
             type: "POST",
             url: "http://" + ipAddress + "/customer/saveCustomer",
             contentType: "application/json",
             data: JSON.stringify({
                 idCustomer: idEdit,
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-                createByIdUser: create_by_id_user,
-                createTime: dateTime,
+                nameCustomer: name,
+                dateofbirthCustomer: birthday,
+                phoneCustomer: phone,
+                peopleidCustomer: peopleId,
+                daterangeCustomer: dateRange,
+                issuedbyCustomer: isUsedBy,
+                addressCustomer: address,
+                nationalityCustomer: nationality,
+                activationdateCustomer: activationDate,
+                activationplaceCustomer: activationPlace,
+                noteCustomer: note,
+                statusCustomer: status,
             }),
+
             beforeSend: function (xhr) {
                 var token = getCookie("token");
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
+
             success: function (data) {
                 if (data.code == 200) {
                     //  alert(data.message);
@@ -249,7 +281,7 @@ $("body").on("click", "#editRow", function () {
 
                     table
                         .row(rowIndexEdit)
-                        .data([idEdit, name, email, phone, address, btnAction])
+                        .data([idEdit, name, phone, address, status, btnAction])
                         .draw();
                     closeNav();
                 } else {
@@ -269,8 +301,8 @@ $("body").on("click", "#editRow", function () {
 // đóng mở form ,dán dữ liệu từ hàng vào form,................ ở đây nhé !
 // ---------------------------------------------------------------------------------------------------------------------
 
-// chuyển đến trang customerHistoryCare
-function replaceToCustomerHistoryCare(button) {
+// chuyển đến trang customerDetail
+function replaceToCustomerDetail(button) {
     var table = $("#dataTables-example").DataTable();
     //lấy ra hàng
     var rowHistoryCare = table.row($(button).parents("td").parents("tr")).index();
@@ -280,7 +312,7 @@ function replaceToCustomerHistoryCare(button) {
     idHistoryCare = table.row(rowHistoryCare).data()[0];
 
     createCookie("idCustomer", idHistoryCare, 30);
-    window.location.assign("mycustomerhistorycare.html");
+    window.location.assign("customerDetail.html");
 }
 
 // load thông tin từ hàng vào form khi nhấn icon sửa (hình bút !)
@@ -291,9 +323,17 @@ function selectedRowToInput() {
             // get the seected row index
             document.getElementById("customer_id").value = this.cells[0].innerHTML;
             document.getElementById("name").value = this.cells[1].innerHTML;
-            document.getElementById("email").value = this.cells[2].innerHTML;
+            document.getElementById("birthday").value = this.cells[2].innerHTML;
             document.getElementById("phone").value = this.cells[3].innerHTML;
-            document.getElementById("address").value = this.cells[4].innerHTML;
+            document.getElementById("peopleId").value = this.cells[4].innerHTML;
+            document.getElementById("dateRange").value = this.cells[5].innerHTML;
+            document.getElementById("isUsedBy").value = this.cells[6].innerHTML;
+            document.getElementById("address").value = this.cells[7].innerHTML;
+            document.getElementById("nationality").value = this.cells[8].innerHTML;
+            document.getElementById("activationDate").value =this.cells[9].innerHTML;
+            document.getElementById("activationPlace").value = this.cells[10].innerHTML;
+            document.getElementById("note").value = this.cells[11].innerHTML;
+            document.getElementById("status").value = this.cells[12].innerHTML;
         };
     }
 }
@@ -301,15 +341,23 @@ function selectedRowToInput() {
 // clear data form khi bật nút add user !
 function removedRowToInput() {
     document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
+    document.getElementById("birthday").value = "";
     document.getElementById("phone").value = "";
+    document.getElementById("peopleId").value = "";
+    document.getElementById("dateRange").value = "";
+    document.getElementById("isUsedBy").value = "";
     document.getElementById("address").value = "";
+    document.getElementById("nationality").value = "";
+    document.getElementById("activationDate").value = "";
+    document.getElementById("activationPlace").value = "";
+    document.getElementById("note").value = "";
+    document.getElementById("status").value = "";
+
 }
 // check the empty input
 function checkEmptyInput() {
     var isEmpty = false,
         name = document.getElementById("name").value,
-        email = document.getElementById("email").value,
         phone = document.getElementById("phone").value,
         address = document.getElementById("address").value;
     if (name === "") {
@@ -318,12 +366,7 @@ function checkEmptyInput() {
     } else {
         document.getElementById("nameEmpty").innerHTML = "";
     }
-    if (email === "") {
-        document.getElementById("emailEmpty").innerHTML = "*Chưa nhập email !";
-        isEmpty = true;
-    } else {
-        document.getElementById("emailEmpty").innerHTML = "";
-    }
+
     if (phone === "") {
         document.getElementById("phoneEmpty").innerHTML =
             "*Chưa nhập số điện thoại !";
@@ -348,12 +391,7 @@ function checkEmptyInput() {
     } else {
         document.getElementById("phoneEmpty").innerHTML = "";
     }
-    if (email_regex.test(email) == false) {
-        document.getElementById("emailEmpty").innerHTML = "*Email sai định dạng !";
-        isEmpty = true;
-    } else {
-        document.getElementById("emailEmpty").innerHTML = "";
-    }
+
     return isEmpty;
 }
 
@@ -361,7 +399,7 @@ function checkEmptyInput() {
 function openNav() {
     //hàm xóa sạch thông tin khi mở form thêm mới !
     removedRowToInput();
-    document.getElementById("myForm").style.height = "60%";
+    document.getElementById("myForm").style.height = "92%";
     document.getElementById("overlay2").style.display = "block";
     // vô hiệu hóa nút sửa vì ta đang cần thêm !
     document.getElementById("editRow").style.display = "none";
@@ -428,4 +466,16 @@ function downloadExcel() {
     a.href = url;
     a.click();
     a.remove();
+}
+
+function changeColor(status) {
+    var statusString = "";
+    if (status == "Đang hoạt động") {
+        statusString = "<p  style='color:green' class='status'>" + status + "</p>";
+    } else if (status == "Không hoạt động") {
+        statusString = "<p  style='color:red' class='status'>" + status + "</p>";
+    } else if (status == null) {
+        statusString = "<p>" + status + "</p>";
+    }
+    return statusString;
 }

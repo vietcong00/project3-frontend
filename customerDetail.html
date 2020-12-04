@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+  td {
+    text-align: center !important;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Quản lí khách hàng</title>
+
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+
+  <script src="assets/vendor/datetimepicker-master/datetimepicker-master/jquery.js"></script>
+  <script src="assets/vendor/datetimepicker-master/datetimepicker-master/build/jquery.datetimepicker.full.js"></script>
+  <link rel="stylesheet"
+    href="assets/vendor/datetimepicker-master/datetimepicker-master/build/jquery.datetimepicker.min.css" />
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <script>
+    $(document).ready(function () {
+      $(function () {
+        $("#startTime").focus(function () {
+          $("#startTime").datetimepicker({
+            format: "Y-m-d H:i:s",
+          });
+        });
+        $("#endTime").focus(function () {
+          $("#endTime").datetimepicker({
+            format: "Y-m-d H:i:s",
+          });
+        });
+      });
+    });
+  </script>
+  <div class="wrapper">
+    <!-- thanh MENU  -->
+    <nav id="sidebar" class=""></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Thông tin cá nhân
+              <a href="customer.html" class="btn btn-sm btn-outline-info float-right"><i class="fas fa-angle-left"></i>
+                <span class="btn-header">Quay lại</span></a>
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav();closeNavNote();"></div>
+
+
+        </div>
+      </div>
+      <section id="navbar-bg">
+        <div class="row">
+          <div class="col">
+            <div class="row py-2 pl-2 bg-light border rounded ml-3 my-3">
+              <div class="col">
+                <i class="fas fa-user-circle" style="width: 210px; height: 200px; color: rgb(9, 192, 224)"></i>
+              </div>
+              <div class="col pt-3 rounded my-3" id="customerInfo"></div>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+        <!-- table show info history care -->
+      </section>
+      <div class="row mx-3 my-3">
+        <form class="form-infor" enctype="multipart/form-data" action="output.php" method="POST" novalidate>
+          <!-- Personal Information -->
+          <div class="form-row p-3">
+            <!-- Name -->
+            <div class="form-group col-lg-12">
+              <label for="fname">Họ tên</label>
+              <input type="text" name="fname" id="fname" class="form-control" required>
+              <div class="invalid-feedback">
+                Please provide your firstname.
+              </div>
+            </div>
+            <!-- End Name -->
+
+            <!-- Gender -->
+            <div class="form-group col-lg-12">
+              <div class="row">
+                <legend class="col-form-label col-md-2 pt-0">Gender</legend>
+                <div class="col-md-10">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" checked>
+                    <label class="form-check-label" for="mlae">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Gender -->
+
+            <!-- Birthday and phone number -->
+            <div class="input-group col-lg-6 mb-3">
+              <div class="input-group-prepend">
+                <label for="birthday" class="input-group-text">Birthday</label>
+              </div>
+              <input type="date" name="birthday" id="birthday" class="form-control" required>
+              <div class="invalid-feedback">
+                Please provide your birthday
+              </div>
+            </div>
+            <div class="input-group col-lg-6 mb-3">
+              <div class="input-group-prepend">
+                <label for="phone" class="input-group-text">Phone</label>
+              </div>
+              <input type="tel" name="phone" id="phone" class="form-control" pattern="[0-9]{10}" required>
+              <div class="invalid-feedback">
+                Your phone must contain 10 numbers in [0..9]
+              </div>
+            </div>
+            <!-- End Birthday and phone number -->
+
+            <!-- Email -->
+            <div class="form-group col-lg-12">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Type your email..."
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+              <div class="invalid-feedback">
+                Your email must be characters followed by an @ sign, followed by more characters, and then a '.' </div>
+            </div>
+            <!-- End Email -->
+
+            <!-- Address -->
+            <div class="form-group col-lg-4">
+              <label for="city">Province</label>
+              <select name="city" id="city" class="custom-select" required>
+                <option value="0" selected>Ha Noi</option>
+                <option value="1">Ho Chi Minh</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="district">District</label>
+              <select name="district" id="district" class="custom-select" required>
+                <option value="0" selected>Hai Ba Trung</option>
+                <option value="1">Dong Da</option>
+                <option value="2">Thanh Xuan</option>
+                <option value="3">Cau Giay</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="addr-detail">Detaiaddr-detaill addr</label>
+              <input type="text" name="addr-detail" id="addr-detail" class="form-control">
+            </div>
+            <!-- End Address -->
+
+            <div class="line w-100"></div>
+
+            <!-- University -->
+            <div class="input-group col-lg-12 mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="university">University</label>
+              </div>
+              <select name="university" id="university" class="custom-select" required>
+                <?php 
+                          for ($i = 0; $i < count($listUniversities); $i++) {
+                              echo '<option value="'. $i .'">'. $listUniversities[$i] .'</option>';
+                          }
+                      ?>
+              </select>
+            </div>
+            <!-- End University -->
+
+            <!-- Career -->
+            <div class="input-group col-lg-12 mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="career">Career</label>
+              </div>
+              <input type="text" name="career" id="career" class="form-control">
+            </div>
+            <!-- End Career -->
+
+            <!-- Avatar -->
+            <div class="input-group col-lg-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inpImage">Upload your image</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="avt" name="avt" aria-describedby="inpImage"
+                  accept="image/*">
+                <label class="custom-file-label" for="avt" id="avtPath">Choose image</label>
+              </div>
+            </div>
+            <!-- End Avatar -->
+
+            <!-- About yourself -->
+            <div class="form-group col-lg-12 mt-3">
+              <label for="introduce"><b>About yourself</b></label>
+              <textarea name="introduce" id="introduce" rows="5" class="form-control"></textarea>
+            </div>
+            <!-- End About yourself -->
+
+          </div>
+          <!-- End Personal Information -->
+
+          <!-- Certificate -->
+          <div class="form-row p-3 justify-content-center" id="certificate">
+            <div class="frame-title w-100">
+              <h1>Certificate</h1>
+            </div>
+            <div id="list-cer" class="col-lg-12 mb-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="cer1">Cer</span>
+                </div>
+                <input type="text" name="certificates[]" id="cer1" class="form-control"
+                  placeholder="Provide your certificate here...">
+                <button type="button" class="btn btn-danger ml-3 " id="remove-cer" onclick="removeCer(this)"
+                  hidden>Remove</button>
+              </div>
+            </div>
+
+            <div class="col-md-auto">
+              <button type="button" class="btn btn-success" id="add-cer">Add more</button>
+            </div>
+          </div>
+          <!-- End Certifications -->
+
+
+
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary" name="submit" id="btn-submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/customerDetail.js"></script>
+</body>
+<footer>
+  <!-- thanh footer  -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>

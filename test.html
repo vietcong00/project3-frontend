@@ -1,0 +1,25 @@
+<audio id="record" controls>
+    <source src="./assets/audio/Eau de Vie - Shiki Ost_dang cap nhat_-2595372.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+</br>
+<button id="mistake-btn" onclick="getMistake()" type="button">Lỗi!</button>
+<button id="test-btn" onclick="test()" type="button">test</button>
+
+
+<script>
+    var record = document.getElementById("record");
+
+    function getMistake() {
+        record.pause();
+        console.log(record.currentTime);
+    }
+    function test() {
+        record.currentTime=60;
+        record.play();
+    }
+    // record.addEventListener('canplaythrough', function() {
+    // this.currentTime = 12;
+    // this.play();
+    //   });
+</script>

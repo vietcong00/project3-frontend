@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+<style>
+  td {
+    text-align: center !important;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Đánh giá chất lượng cuộc gọi</title>
+  <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/DataTables/datatables.min.css" rel="stylesheet" />
+  <link href="assets/css/master.css" rel="stylesheet" />
+  <link href="assets/css/overlay_screen.css" rel="stylesheet" />
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/js/CommonLink.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- thanh MENU  -->
+    <nav id="sidebar" class=""></nav>
+
+    <div id="body" class="active">
+      <!-- thanh header -->
+      <nav id="header"></nav>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="page-title">
+            <h3>
+              Đánh giá chất lượng cuộc gọi
+            </h3>
+          </div>
+          <!-- hiện div sương mờ ở đây !-->
+          <div id="overlay2" onclick="closeNav()"></div>
+          <!-- form thêm sửa ở đây !    -->
+          <div id="myForm" class="overlay rounded">
+            <div class="overlay-content">
+              <form>
+                <div class="form-group" id="statusDiv">
+                  <!-- mistake-->
+                  <label for="mistake" class="control-label">Lỗi</label>
+                  <select class="form-control" id="mistake" onchange="changeMistake()">
+
+                  </select>
+                  <span id="mistakeEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- max minus scrore -->
+                  <label for="maxMinusScore" class="control-label">Điểm trừ tối đa</label>
+                  <input type="text" class="form-control" id="maxMinusScore" placeholder="" />
+                  <span id="maxMinusScoreEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- minus score -->
+                  <label for="minusScore" class="control-label">Điểm trừ</label>
+                  <input type="text" class="form-control" id="minusScore" placeholder="" />
+                  <span id="minusScoreEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                  <!-- comment -->
+                  <label for="comment" class="control-label">Nhận xét</label>
+                  <input type="text" class="form-control" id="comment" placeholder="" />
+                  <span id="commentEmpty" class="text-danger"></span>
+                </div>
+
+              </form>
+              <div class="clearfix">
+                <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
+                  Đóng
+                </button>
+                <button id="addMistake" class="btn btn-primary mt-2 float-right" onclick="addMistake();">
+                  Thêm
+                </button>
+                <button id="editMistake" class="btn btn-success mt-2 float-right" onclick="editMistake(this);">
+                  Sửa
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- hết form -->
+
+          <audio id="record" controls>
+            <source src="./assets/audio/Eau de Vie - Shiki Ost_dang cap nhat_-2595372.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          </br>
+          <button id="mistake-btn" onclick="getMistake()" type="button">Lỗi!</button>
+
+          <div class="box box-primary">
+            <div class="box-body">
+              <table width="100%" class="table table-hover" id="dataTables-example">
+                <thead>
+                  <tr class="text-center">
+                    <th>STT</th>
+                    <th>Tiêu chí</th>
+                    <th>Thời điểm</th>
+                    <th>Điểm trừ tối đa</th>
+                    <th>Điểm trừ</th>
+                    <th>Nhận xét</th>
+                    <th>Ngày cập nhật cuối</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+  <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+  <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+  <script src="assets/vendor/DataTables/datatables.min.js"></script>
+  <script src="assets/js/initiate-datatables.js"></script>
+  <script src="assets/js/notify.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/CommonCookie.js"></script>
+  <script src="assets/js/record-detail.js"></script>
+</body>
+<footer>
+  <!-- thanh footer -->
+  <nav id="footer"></nav>
+</footer>
+
+</html>
