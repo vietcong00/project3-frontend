@@ -28,10 +28,13 @@ function logOut() {
                     position: "top center",
                     className: "warn",
                 });
-                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "idEmployee=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "pageActionList=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                // document.cookie = "idEmployee=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                // document.cookie = "pageActionList=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                // document.cookie = "idEmployeeDetail=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                deleteAllCookies();
+
                 location.replace("login.html");
             },
             error: function (e) {
@@ -40,4 +43,15 @@ function logOut() {
             },
         });
     });
+}
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
 }

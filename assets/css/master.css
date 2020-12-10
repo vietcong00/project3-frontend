@@ -475,3 +475,11 @@ footer {
   margin: 0;
   padding: 0;
 }
+
+#btnEdit{
+  float: right;
+}
+
+#lastComment{
+  height: 80%;
+}

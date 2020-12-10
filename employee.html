@@ -41,12 +41,6 @@
                   class="fas fa-user-shield"></i>Vai trò</a> -->
               <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2" id="btnAdd" onclick="openNav();"><i
                   class="fas fa-user-plus"></i> Thêm</a>
-              <a href="#" class="btn btn-sm btn-outline-primary float-right ml-2"><i class="fas fa-download"></i>Nhập
-                file
-              </a>
-              <a href="#" onclick="downloadExcel()" class="btn btn-sm btn-outline-primary float-right ml-2"><i
-                  class="fas fa-upload"></i>Xuất file
-              </a>
             </h3>
           </div>
           <!-- hiện div sương mờ ở đây !-->
@@ -59,67 +53,76 @@
             <div class="overlay-content">
               <form>
                 <!-- Vertical -->
-                <div class="form-group">
-                  <!--Mã NV -->
-                  <!-- <label for="user_id" class="control-label">Mã NV</label> -->
-                  <input type="hidden" class="form-control" id="user_id" placeholder="John Deer" />
-                </div>
-                <div class="form-group">
-                  <!-- Full Name -->
-                  <label for="name" class="control-label">Họ và tên</label>
-                  <input type="text" class="form-control" id="name" placeholder="Eg. John Deer" />
-                  <span id="nameEmpty" class="text-danger"></span>
-                </div>
 
-                <div class="form-group">
-                  <!-- email -->
-                  <label for="email" class="control-label">Email</label>
-                  <input type="text" class="form-control" id="email" placeholder="eg. nam123@abc.xyz" />
-                  <span id="emailEmpty" class="text-danger"></span>
-                </div>
+                <div class="form-row">
 
-                <div class="form-group">
-                  <!-- password -->
-                  <label for="password" class="control-label">Mật khẩu</label>
-                  <input type="text" class="form-control" id="password" placeholder="eg. 123abc,20201974,...." />
-                  <span id="passwordEmpty" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                  <!-- idGroup -->
-                  <label for="group" class="control-label">Nhóm</label>
-                  <select class="form-control" id="group">
-                    <!-- <option value="2">2</option>
-                                        <option value="3">3</option> -->
-                  </select>
-                  <span id="groupEmpty" class="text-danger"></span>
-                </div>
+                  <div class="form-group col-md-6">
+                    <!-- Full Name -->
+                    <label for="name" class="control-label">Họ và tên</label>
+                    <input type="text" class="form-control" id="name" placeholder="Eg. John Deer" />
+                    <span id="nameEmpty" class="text-danger"></span>
+                  </div>
 
-                <div class="form-group">
-                  <!-- type -->
-                  <label for="type" class="control-label">Loại</label>
-                  <select class="form-control" id="type">
-                    <option value="leader">Nhóm trưởng</option>
-                    <option value="employee">Thành viên</option>
-                  </select>
-                  <span id="typeEmpty" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                  <!-- role -->
-                  <label for="role" class="control-label">Quyền</label>
-                  <!-- <select class="form-control" id="role">
-                                        
-                                    </select> -->
-                  <span id="roleEmpty" class="text-danger"></span>
-                  <input type="button" class="form-control" id="switch3" href="#roleList" data-toggle="collapse"
-                    value="Mời chọn quyền " />
-                  <div class="collapse list-unstyled ml-5" id="roleList">
-                    <!-- list role -->
+                  <div class="form-group col-md-6">
+                    <!-- userName-->
+                    <label for="userName" class="control-label">UserName</label>
+                    <input type="text" class="form-control" id="userName" placeholder="Eg.123-45-678" />
+                    <span id="usernameEmpty" class="text-danger"></span>
                   </div>
                 </div>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-6">
+                    <!-- email -->
+                    <label for="email" class="control-label">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="eg. nam123@abc.xyz" />
+                    <span id="emailEmpty" class="text-danger"></span>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <!-- password -->
+                    <label for="password" class="control-label">Mật khẩu</label>
+                    <input type="text" class="form-control" id="password" placeholder="eg. 123abc,20201974,...." />
+                    <span id="passwordEmpty" class="text-danger"></span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <!-- dateofbirth -->
+                    <label for="dateofbirth" class="control-label">Ngày Sinh</label>
+                    <input type="date" class="form-control" id="dateofbirth" placeholder="" />
+                    <span id="dateofbirthEmpty" class="text-danger"></span>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <!-- phone-->
+                    <label for="phone" class="control-label">Số điện thoại</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Eg.123-45-678" />
+                    <span id="phoneEmpty" class="text-danger"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!-- address-->
+                  <label for="address" class="control-label">Địa chỉ</label>
+                  <input type="text" class="form-control" id="address" placeholder="Eg.ha noi " />
+                  <span id="addressEmpty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" id="positionDiv">
+                  <!-- position -->
+                  <label for="position" class="control-label">Vị trí</label>
+                  <select class="form-control" id="position">
+                    <option value="Giám sát viên">Giám sát viên</option>
+                    <option value="Điện thoại viên">Điện thoại viên</option>
+                  </select>
+                  <span id="positionEmpty" class="text-danger"></span>
+                </div>
+
                 <div class="form-group" id="statusDiv">
                   <!-- status-->
-                  <label for="address" class="control-label">Trạng thái</label>
+                  <label for="status" class="control-label">Trạng thái</label>
                   <select class="form-control" id="status" onchange="changeStatus()">
                     <option value="Đang hoạt động" class="text-success">
                       Đang hoạt động
@@ -130,18 +133,9 @@
                   </select>
                   <span id="statusEmpty" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                  <!-- phone-->
-                  <label for="phone" class="control-label">Số điện thoại</label>
-                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Eg.123-45-678" />
-                  <span id="phoneEmpty" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                  <!-- address-->
-                  <label for="address" class="control-label">Địa chỉ</label>
-                  <input type="text" class="form-control" id="address" placeholder="Eg.ha noi " />
-                  <span id="addressEmpty" class="text-danger"></span>
-                </div>
+
+
+
               </form>
               <div class="clearfix">
                 <button class="ml-2 btn btn-danger mt-2 float-right" onclick="closeNav();">
@@ -163,14 +157,16 @@
               <table width="100%" class="table table-hover" id="dataTables-example">
                 <thead>
                   <tr class="text-center">
-                    <th>Mã nhân viên</th>
-                    <th>Họ và tên</th>
+                    <th>MSNV</th>
+                    <th>Tên</th>
+                    <th>UserName</th>
                     <th>Email</th>
-                    <th>Số điện thoại</th>
+                    <th>SĐT</th>
+                    <th>Ngày sinh</th>
                     <th>Địa chỉ</th>
                     <th>Vị trí</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody class="text-center"></tbody>

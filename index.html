@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Hệ thống CSKH ViettelPay</title>
-	<link rel="icon" type="image/png" href="assets/img/viettelpay.png"/>
+    <link rel="icon" type="image/png" href="assets/img/viettelpay.png" />
 
     <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/master.css" rel="stylesheet" />
@@ -36,141 +36,31 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row" style="height: 150px">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="teal fas fa-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail text-center">
-                                                <p style="height: 52px">Tổng đơn hàng</p>
-                                                <span class="number" id="totalTransaction"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-redo-alt"></i>
-                                            <span class="currentMonth">Trong tháng </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row" style="height: 150px">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="olive fas fa-money-bill-alt"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail text-center">
-                                                <p style="height: 52px">Doanh số</p>
-                                                <span class="number" id="revenue"></span>
-                                                <b style="margin-bottom: 0px">VNĐ</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-calendar"></i>
-                                            <span class="currentMonth">Trong tháng </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row" style="height: 150px">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="violet fas fa-eye"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail text-center">
-                                                <p style="height: 52px">Tổng khách hàng</p>
-                                                <span class="number" id="totalCustomerInCurrentMonth"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-stopwatch"></i>
-                                            <span class="currentMonth">Trong tháng </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row" style="height: 150px">
-                                        <div class="col-sm-4">
-                                            <div class="icon-big text-center">
-                                                <i class="fas fa-handshake blue mb-2"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="detail text-center">
-                                                <p style="height: 52px">
-                                                    Số lượt chăm sóc khách hàng
-                                                </p>
-                                                <span class="number" id="numberHistoryCare"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-envelope-open-text"></i>
-                                            <span class="currentMonth">Trong tháng </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row">
+                        <!-- Biểu đồ doanh số -->
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="content">
                                     <div class="head">
-                                        <h4 class="mb-0">Biểu đồ doanh số</h4>
-                                        <p class="text-muted currentYear">Dữ liệu doanh thu tính theo năm </p>
+                                        <h4 class="mb-0">Số lượt chăm sóc khách hàng</h4>
+                                        <p class="text-muted currentYear">Dữ liệu chăm sóc tính theo năm </p>
                                     </div>
-                                    <div class="canvas-wrapper" id="thisIsTrafficFlow">
+                                    <div class="canvas-wrapper" id="countCustomerCare">
                                         <!-- <canvas class="chart" id="trafficflow"></canvas> -->
                                     </div>
                                     <div class="ui hidden divider"></div>
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Biểu đồ tình trạng đơn hàng -->
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="content">
                                     <div class="head">
-                                        <h4 class="mb-0">Biểu đồ Thống kê tình trạng đơn hàng</h4>
+                                        <h4 class="mb-0">Biểu đồ Thống kê điểm đánh giá cuộc gọi</h4>
                                         <p class="text-muted currentMonth">
-                                            Dữ liệu doanh thu tính theo tháng
+                                            Dữ liệu đánh giá tính theo tháng
                                         </p>
                                     </div>
                                     <div class="canvas-wrapper" id="thisIsPieChart">
@@ -189,21 +79,22 @@
                                 <div class="content">
                                     <div class="head">
                                         <h4 class="mb-0">
-                                            Danh sách nhân viên đạt doanh thu cao nhất
+                                            Danh sách 10 nhân viên đạt điểm cao nhất
                                         </h4>
-                                        <p class="text-muted lastMonth">
-                                            Dựa trên doanh thu bán hàng tháng
+                                        <p class="text-muted currentMonth">
+                                            Dựa trên số liệu thống kê tháng
                                         </p>
                                     </div>
                                     <div class="canvas-wrapper">
-                                        <table class="table no-margin bg-lighter-grey">
+                                        <table class="table no-margin bg-lighter-grey"  id="topScoreEmployee">
                                             <thead class="success">
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>Tên nhân viên</th>
-                                                    <th class="text-right">Doanh số</th>
+                                                    <th class="text-right">Điểm số</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="revenueByUser">
+                                            <tbody>
 
                                             </tbody>
                                         </table>
@@ -216,18 +107,19 @@
                                 <div class="content">
                                     <div class="head">
                                         <h4 class="mb-0">
-                                            Danh sách sản phẩm được bán nhiều nhất
+                                            Danh sách 10 lỗi hay mắc nhất
                                         </h4>
-                                        <p class="text-muted">
-                                            Dựa trên số sản phẩm được bán vào tháng (trước)
+                                        <p class="text-muted currentYear">
+                                            Dựa trên số liệu thống kê trong năm
                                         </p>
                                     </div>
                                     <div class="canvas-wrapper">
                                         <table class="table no-margin bg-lighter-grey" id="productAmount">
                                             <thead class="success">
                                                 <tr>
-                                                    <th>Sản phẩm</th>
-                                                    <th class="text-right">Số lượng</th>
+                                                    <th>STT</th>
+                                                    <th>Lỗi vi phạm</th>
+                                                    <th class="text-right">Số lần</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -245,6 +137,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -255,7 +148,7 @@
     <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
     <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
     <script src="assets/vendor/chartsjs/Chart.min.js"></script>
-    <script src="assets/js/dashboard-charts.js"></script>
+    <!-- <script src="assets/js/dashboard-charts.js"></script> -->
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="assets/js/notify.min.js"></script>
     <script src="assets/js/config.js"></script>

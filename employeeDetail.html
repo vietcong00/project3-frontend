@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Email: heyalexluna@gmail.com
+* Version: 1.1
+* Author: Alexis Luna
+* Copyright 2019 Alexis Luna
+* Website: https://github.com/mralexisluna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Hệ thống CSKH ViettelPay</title>
+    <link rel="icon" type="image/png" href="assets/img/viettelpay.png" />
+
+    <link href="assets/vendor/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/master.css" rel="stylesheet" />
+    <link href="assets/vendor/chartsjs/Chart.min.css" rel="stylesheet" />
+    <link href="assets/vendor/flagiconcss3/css/flag-icon.min.css" rel="stylesheet" />
+    <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/CommonLink.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- thanh menu  -->
+        <nav id="sidebar" class=""></nav>
+
+        <div id="body" class="active">
+            <!-- thanh header -->
+            <nav id="header"></nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="page-title">
+                        <h3>
+                            Nhân viên : 
+                            <span class="number" id="employeeName"></span>
+                        </h3>
+                        <h3>
+                            <span class="currentMonth">Điểm tháng </span>
+                            <span class="number" id="score">:</span>
+                        </h3>
+
+                    </div>
+                    <div class="row">
+                        <!-- Xếp hạng -->                      
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row" style="height: 150px">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="fas fa-medal"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail text-center">
+                                                <p style="height: 52px">Xếp hạng</p>
+                                                <span class="number" id="rank"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-stopwatch"></i>
+                                            <span class="currentMonth">Trong tháng </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cuộc gọi tốt -->
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row" style="height: 150px">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="blue far fa-thumbs-up"></i>                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail text-center">
+                                                <p style="height: 52px">Số lượng cuộc gọi tốt </p>
+                                                <span class="number" id="totalGoodJobInCurrentMonth"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-stopwatch"></i>
+                                            <span class="currentMonth">Trong tháng </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Số lượng cuộc gọi dưới trung bình -->
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row" style="height: 150px">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="black fas fa-calendar-times"></i>                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail text-center">
+                                                <p style="height: 52px">Số lượng cuộc gọi kém</p>
+                                                <span class="number" id="totalBadInCurrentMonth"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-stopwatch"></i>
+                                            <span class="currentMonth">Trong tháng </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Số lượt chăm sóc khách hàng -->
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row" style="height: 150px">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="fas fa-handshake blue mb-2"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail text-center">
+                                                <p style="height: 52px">
+                                                    Số lượt chăm sóc khách hàng
+                                                </p>
+                                                <span class="number" id="numberHistoryCare"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-stopwatch"></i>
+                                            <span class="currentMonth">Trong tháng </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Biểu đồ doanh số -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="head">
+                                        <h4 class="mb-0">Biểu đồ điểm số</h4>
+                                        <p class="text-muted currentYear">Dữ liệu doanh thu tính theo năm </p>
+                                    </div>
+                                    <div class="canvas-wrapper" id="thisIsTrafficFlow">
+                                        <!-- <canvas class="chart" id="trafficflow"></canvas> -->
+                                    </div>
+                                    <div class="ui hidden divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Biểu đồ tình trạng đơn hàng -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="head">
+                                        <h4 class="mb-0">Thống kê các lỗi</h4>
+                                        <p class="text-muted currentMonth">
+                                            Dữ liệu doanh thu tính theo tháng
+                                        </p>
+                                    </div>
+                                    <div class="canvas-wrapper" id="thisIsPieChart">
+                                        <!-- <canvas class="chart" id="pieChart"></canvas> -->
+                                    </div>
+                                    <div class="ui hidden divider"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/getCurrentTime.js"></script>
+    <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/solid.min.js"></script>
+    <script src="assets/vendor/fontawesome5/js/fontawesome.min.js"></script>
+    <script src="assets/vendor/chartsjs/Chart.min.js"></script>
+    <!-- <script src="assets/js/dashboard-charts.js"></script> -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="assets/js/notify.min.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/CommonCookie.js"></script>
+    <script src="assets/js/employeeDetail.js"></script>
+</body>
+<footer>
+    <div>
+        <!-- thanh footer -->
+        <nav id="footer"></nav>
+    </div>
+</footer>
+
+</html>

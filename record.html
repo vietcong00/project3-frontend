@@ -45,13 +45,13 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>Mã cuộc gọi</th>
-                                        <th>Mã điện thoại viên</th>
-                                        <th>Số điện thoại khách hàng</th>
+                                        <th>MSNV</th>
+                                        <th>SĐT</th>
                                         <th>Ngày</th>
-                                        <th>Thời gian bắt đầu</th>
-                                        <th>Thời gian kết thúc</th>
+                                        <th>Bắt đầu</th>
+                                        <th>Kết thúc</th>
                                         <th>Mô tả</th>
-                                        <th>Hành động</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center"></tbody>
@@ -70,24 +70,82 @@
                         </h3>
                     </div>
 
-                    <div class="box box-primary">
+                    <div class="box box-primary float-left" id="sidebar-left">
                         <div class="box-body">
                             <table width="100%" class="table table-hover" id="dataTables-commented">
                                 <thead>
                                     <tr class="text-center">
                                         <th>Mã cuộc gọi</th>
-                                        <th>Mã điện thoại viên</th>
-                                        <th>Số điện thoại khách hàng</th>
+                                        <th>MSNV</th>
+                                        <th>SĐT</th>
                                         <th>Ngày</th>
-                                        <th>Thời gian bắt đầu</th>
-                                        <th>Thời gian kết thúc</th>
+                                        <th>Bắt đầu</th>
+                                        <th>Kết thúc</th>
+                                        <th>Đánh giá cuối</th>
+                                        <th>Người đánh giá cuối</th>
                                         <th>Điểm</th>
-                                        <th>Người đánh giá cuối cùng</th>
-                                        <th>Hành động</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center"></tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <div class="float-right " id="sidebar-right" style="width:0px; display: none;">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">Chi tiết đánh giá <button
+                                            class="btn btn-outline-danger btn-rounded openbtn" onclick="closeForm()"> <i
+                                                class="fas fa-times"></i></button></div>
+                                    <div class="card-body">
+                                        <!-- <h5 class="card-title">Example form with inline field validations</h5> -->
+                                        <form class="needs-validation" novalidate accept-charset="utf-8">
+                                        
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="description">Mô tả khái quát</label>
+                                                    <input class="form-control" id="description" disabled>
+                                                </div>
+
+                                            </div>
+                                            <hr>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label for="lastTimeComment">Đánh giá cuối cùng</label>
+                                                    <input class="form-control" id="lastTimeComment" disabled>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="lastIdSupervisor">Người đánh giá</label>
+                                                    <input type="text" class="form-control" id="lastIdSupervisor"
+                                                        placeholder=" Hà Nội" required disabled>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="score">Điểm</label>
+                                                    <input type="text" class="form-control" id="score"
+                                                        placeholder=" Hà Nội" required disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="lastComment">Đánh giá</label>
+                                                    <textarea class="form-control" id="lastComment" disabled></textarea>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                        <a href="#" type="submit" class="btn btn-success" onclick="closeForm();"
+                                            id="btnEdit"><i class="fas fa-save"></i>
+                                            Đóng</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -53,29 +53,30 @@
                   <!-- mistake-->
                   <label for="mistake" class="control-label">Lỗi</label>
                   <select class="form-control" id="mistake" onchange="changeMistake()">
-
                   </select>
                   <span id="mistakeEmpty" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                  <!-- max minus scrore -->
-                  <label for="maxMinusScore" class="control-label">Điểm trừ tối đa</label>
-                  <input type="text" class="form-control" id="maxMinusScore" placeholder="" />
-                  <span id="maxMinusScoreEmpty" class="text-danger"></span>
-                </div>
+                <div class="form-row">
 
-                <div class="form-group">
-                  <!-- minus score -->
-                  <label for="minusScore" class="control-label">Điểm trừ</label>
-                  <input type="text" class="form-control" id="minusScore" placeholder="" />
-                  <span id="minusScoreEmpty" class="text-danger"></span>
+                  <div class="form-group col-md-6">
+                    <label for="maxMinusScore" class="control-label">Điểm trừ tối đa</label>
+                    <input type="text" class="form-control" id="maxMinusScore" placeholder="" disabled>
+                    <span id="maxMinusScoreEmpty" class="text-danger"></span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <!-- minus score -->
+                    <label for="minusScore" class="control-label">Điểm trừ</label>
+                    <input type="number" class="form-control" id="minusScore" placeholder="" onchange="choseMinus();"/>
+                    <span id="minusScoreEmpty" class="text-danger"></span>
+                  </div>
+
                 </div>
 
                 <div class="form-group">
                   <!-- comment -->
                   <label for="comment" class="control-label">Nhận xét</label>
-                  <input type="text" class="form-control" id="comment" placeholder="" />
+                  <textarea type="text" class="form-control" id="comment" placeholder="" style="height: 160px;"></textarea>
                   <span id="commentEmpty" class="text-danger"></span>
                 </div>
 
@@ -96,25 +97,28 @@
           <!-- hết form -->
 
           <audio id="record" controls>
-            <source src="./assets/audio/Eau de Vie - Shiki Ost_dang cap nhat_-2595372.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
           </br>
+          <label for="comment" class="control-label">Số điểm còn lại </label>
+          <input type="number" id="totalScore" disabled>
           <button id="mistake-btn" onclick="getMistake()" type="button">Lỗi!</button>
+          <button id="goodJob-btn" onclick="goodJob()" type="button" >Good Job!</button>
 
           <div class="box box-primary">
             <div class="box-body">
               <table width="100%" class="table table-hover" id="dataTables-example">
                 <thead>
                   <tr class="text-center">
-                    <th>STT</th>
+                    <th>MS</th>
                     <th>Tiêu chí</th>
                     <th>Thời điểm</th>
                     <th>Điểm trừ tối đa</th>
                     <th>Điểm trừ</th>
                     <th>Nhận xét</th>
-                    <th>Ngày cập nhật cuối</th>
-                    <th>Hành động</th>
+                    <th>Thời gian</th>
+                    <th>Người chấm</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,7 +131,7 @@
       </div>
     </div>
   </div>
- 
+
 
   <script src="assets/vendor/jquery3/jquery-3.4.1.min.js"></script>
   <script src="assets/vendor/bootstrap4/js/bootstrap.bundle.min.js"></script>

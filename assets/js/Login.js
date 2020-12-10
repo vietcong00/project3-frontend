@@ -115,10 +115,10 @@ function checkAccount() {
                         className: "error"
                     });
                 } else {
-                    // $.notify(data.message, {
-                    //     position: "top center",
-                    //     className: "error"
-                    // });
+                    $.notify(data.message, {
+                        position: "top center",
+                        className: "error"
+                    });
                 }
             },
             error: function (e) {
